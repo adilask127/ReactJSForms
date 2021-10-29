@@ -73,8 +73,8 @@ const CommentsListComponent = ({ userId }) => {
         if (!isValid) return;
         data.pageId = userId;
         api.comments.add(data).then((newComment) => {
-            setCommentsForUser((prevState) => [...prevState, newComment]);
-            setUsersComments((prevState) => [...prevState, newComment]);
+            setCommentsForUser((prevState) => [newComment, ...prevState]);
+            setUsersComments((prevState) => [newComment, ...prevState]);
             setData(initialData);
         });
     };
