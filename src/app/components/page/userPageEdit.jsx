@@ -74,7 +74,11 @@ const UserEditPage = ({ userId }) => {
     };
 
     const isValid = Object.keys(errors).length === 0;
-
+    const returnToUserPage = () => {
+        api.users.update(userId, data).then(() => {
+            history.push(`/users/${userId}`);
+        });
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
         const isValid = validate();
@@ -88,6 +92,15 @@ const UserEditPage = ({ userId }) => {
             {data && (
                 <div className="container">
                     <div className="row">
+                        <div className="d-flex justify-content-start">
+                            <button
+                                className="btn btn-primary"
+                                onClick={returnToUserPage}
+                            >
+                                <i className="bi bi-caret-left"></i>
+                                Назад
+                            </button>
+                        </div>
                         <div className="col-md-6 offset-md-3 shadow p-4">
                             <form onSubmit={handleSubmit}>
                                 <TextField
